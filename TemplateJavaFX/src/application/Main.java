@@ -21,6 +21,11 @@ public class Main extends Application {
 	}
 	
 	public static void main(String[] args) {
+		if("Ø" == "Ø") {
+			System.out.println("yes Ø");
+		} else {
+			System.out.println("nope" );
+		}
 		launch(args);
 	}
 }
