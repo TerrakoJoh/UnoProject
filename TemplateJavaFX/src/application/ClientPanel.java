@@ -27,7 +27,7 @@ public class ClientPanel extends Parent{
 		this.receivedText = new TextFlow();
 		
 		
-		this.sendBtn.setText("Envoyer");
+		this.sendBtn.setText("Send");
 		this.sendBtn.setLayoutX(455);
 		this.sendBtn.setLayoutY(405);
 		this.sendBtn.setPrefHeight(30);
@@ -44,7 +44,7 @@ public class ClientPanel extends Parent{
 		});
 		
 		
-		this.clearBtn.setText("Effacer");
+		this.clearBtn.setText("Clear");
 		this.clearBtn.setLayoutX(455);
 		this.clearBtn.setLayoutY(445);
 		this.clearBtn.setPrefHeight(30);
