@@ -55,7 +55,7 @@ public class ConnexionPanel extends Parent {
 
 			@Override
 			public void handle(ActionEvent arg0) {
-				connexion();
+//				connexion();
 				
 			}
 			
