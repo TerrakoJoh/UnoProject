@@ -17,8 +17,10 @@ public class MainGui extends Application {
 	public void start(Stage stage) throws Exception {
 		// TODO Auto-generated method stub
 		ClientPanel clientPanel = new ClientPanel();
+		ConnexionPanel connexionPanel = new ConnexionPanel();
 		Group root = new Group();
-		root.getChildren().add(clientPanel);
+//		root.getChildren().add(clientPanel);
+		root.getChildren().add(connexionPanel);
 		Scene scene = new Scene(root, 600, 500);
 		stage.setTitle("Ma super app");
 

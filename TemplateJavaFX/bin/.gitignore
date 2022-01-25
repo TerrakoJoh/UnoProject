@@ -1,1 +1,5 @@
 /application/
+/client/
+/common/
+/module-info.class
+/server/
