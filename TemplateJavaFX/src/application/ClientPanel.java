@@ -1,5 +1,6 @@
 package application;
 
+import client.Client;
 import common.Message;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -18,7 +19,8 @@ public class ClientPanel extends Parent{
 	private TextFlow receivedText;
 	private Button sendBtn;
 	private Button clearBtn;
-	private String pseudo;
+	private Client client;
+//	private String pseudo;
 	
 	public ClientPanel(String pseudo) {
 		this.textToSend = new TextArea();
@@ -26,8 +28,7 @@ public class ClientPanel extends Parent{
 		this.sendBtn = new Button();
 		this.clearBtn = new Button();
 		this.receivedText = new TextFlow();
-		this.pseudo = pseudo;
-		
+//		this.client = new Client(pseudo, 80, pseudo)
 		
 		this.sendBtn.setText("Send");
 		this.sendBtn.setLayoutX(455);

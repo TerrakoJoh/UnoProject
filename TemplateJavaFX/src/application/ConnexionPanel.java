@@ -66,7 +66,6 @@ public class ConnexionPanel extends Parent {
 
 			@Override
 			public void handle(ActionEvent arg0) {
-				System.out.println("On click !!!");
 				connexion();
 			}
 			
