@@ -18,13 +18,15 @@ public class ClientPanel extends Parent{
 	private TextFlow receivedText;
 	private Button sendBtn;
 	private Button clearBtn;
+	private String pseudo;
 	
-	public ClientPanel() {
+	public ClientPanel(String pseudo) {
 		this.textToSend = new TextArea();
 		this.scrollReceivedText = new ScrollPane();
 		this.sendBtn = new Button();
 		this.clearBtn = new Button();
 		this.receivedText = new TextFlow();
+		this.pseudo = pseudo;
 		
 		
 		this.sendBtn.setText("Send");
@@ -37,7 +39,7 @@ public class ClientPanel extends Parent{
 
 			@Override
 			public void handle(ActionEvent arg0) {
-				printNewMessage(new Message("sender", textToSend.getText()));
+				printNewMessage(new Message(pseudo, textToSend.getText()));
 				textToSend.clear();
 				// TODO Auto-generated method stub
 			}
@@ -99,4 +101,5 @@ public class ClientPanel extends Parent{
 			
 		});
 	}
+	
 }
