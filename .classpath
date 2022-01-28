@@ -11,42 +11,74 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
+<<<<<<< HEAD
 	<classpathentry kind="lib" path="D:/ECLIPSE/javaFX/openjfx-17.0.1_windows-x64_bin-sdk/javafx-sdk-17.0.1/lib/javafx.base.jar">
+=======
+	<classpathentry kind="lib" path="D:/Johanne/Documents/GitHub/UnoProject/JavaFX/javafx-sdk-17.0.1/lib/javafx.base.jar">
+>>>>>>> main
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
+<<<<<<< HEAD
 	<classpathentry kind="lib" path="D:/ECLIPSE/javaFX/openjfx-17.0.1_windows-x64_bin-sdk/javafx-sdk-17.0.1/lib/javafx.controls.jar">
+=======
+	<classpathentry kind="lib" path="D:/Johanne/Documents/GitHub/UnoProject/JavaFX/javafx-sdk-17.0.1/lib/javafx.controls.jar">
+>>>>>>> main
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
+<<<<<<< HEAD
 	<classpathentry kind="lib" path="D:/ECLIPSE/javaFX/openjfx-17.0.1_windows-x64_bin-sdk/javafx-sdk-17.0.1/lib/javafx.fxml.jar">
+=======
+	<classpathentry kind="lib" path="D:/Johanne/Documents/GitHub/UnoProject/JavaFX/javafx-sdk-17.0.1/lib/javafx.fxml.jar">
+>>>>>>> main
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
+<<<<<<< HEAD
 	<classpathentry kind="lib" path="D:/ECLIPSE/javaFX/openjfx-17.0.1_windows-x64_bin-sdk/javafx-sdk-17.0.1/lib/javafx.graphics.jar">
+=======
+	<classpathentry kind="lib" path="D:/Johanne/Documents/GitHub/UnoProject/JavaFX/javafx-sdk-17.0.1/lib/javafx.graphics.jar">
+>>>>>>> main
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
+<<<<<<< HEAD
 	<classpathentry kind="lib" path="D:/ECLIPSE/javaFX/openjfx-17.0.1_windows-x64_bin-sdk/javafx-sdk-17.0.1/lib/javafx.media.jar">
+=======
+	<classpathentry kind="lib" path="D:/Johanne/Documents/GitHub/UnoProject/JavaFX/javafx-sdk-17.0.1/lib/javafx.media.jar">
+>>>>>>> main
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
+<<<<<<< HEAD
 	<classpathentry kind="lib" path="D:/ECLIPSE/javaFX/openjfx-17.0.1_windows-x64_bin-sdk/javafx-sdk-17.0.1/lib/javafx.swing.jar">
+=======
+	<classpathentry kind="lib" path="D:/Johanne/Documents/GitHub/UnoProject/JavaFX/javafx-sdk-17.0.1/lib/javafx.swing.jar">
+>>>>>>> main
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
+<<<<<<< HEAD
 	<classpathentry kind="lib" path="D:/ECLIPSE/javaFX/openjfx-17.0.1_windows-x64_bin-sdk/javafx-sdk-17.0.1/lib/javafx.web.jar">
+=======
+	<classpathentry kind="lib" path="D:/Johanne/Documents/GitHub/UnoProject/JavaFX/javafx-sdk-17.0.1/lib/javafx.web.jar">
+>>>>>>> main
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
+<<<<<<< HEAD
 	<classpathentry kind="lib" path="D:/ECLIPSE/javaFX/openjfx-17.0.1_windows-x64_bin-sdk/javafx-sdk-17.0.1/lib/javafx-swt.jar">
+=======
+	<classpathentry kind="lib" path="D:/Johanne/Documents/GitHub/UnoProject/JavaFX/javafx-sdk-17.0.1/lib/javafx-swt.jar">
+>>>>>>> main
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>

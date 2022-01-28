@@ -1,5 +1,6 @@
 package application;
 
+import client.Client;
 import common.Message;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -18,14 +19,16 @@ public class ClientPanel extends Parent{
 	private TextFlow receivedText;
 	private Button sendBtn;
 	private Button clearBtn;
+	private Client client;
+//	private String pseudo;
 	
-	public ClientPanel() {
+	public ClientPanel(String pseudo) {
 		this.textToSend = new TextArea();
 		this.scrollReceivedText = new ScrollPane();
 		this.sendBtn = new Button();
 		this.clearBtn = new Button();
 		this.receivedText = new TextFlow();
-		
+//		this.client = new Client(pseudo, 80, pseudo)
 		
 		this.sendBtn.setText("Send");
 		this.sendBtn.setLayoutX(455);
@@ -37,7 +40,7 @@ public class ClientPanel extends Parent{
 
 			@Override
 			public void handle(ActionEvent arg0) {
-				printNewMessage(new Message("sender", textToSend.getText()));
+				printNewMessage(new Message(pseudo, textToSend.getText()));
 				textToSend.clear();
 				// TODO Auto-generated method stub
 			}
@@ -99,4 +102,5 @@ public class ClientPanel extends Parent{
 			
 		});
 	}
+	
 }
