@@ -39,7 +39,6 @@ public class Client {
      */
     private ObjectOutputStream out;
     private ObjectInputStream in;
-    private String pseudo;
 
     /**
      * opens the socket, the input and output streams, and start two threads,
@@ -51,8 +50,8 @@ public class Client {
      * @throws UnknownHostException
      * @throws IOException
      */
-    public Client(String address, Integer port, String pseudo) throws UnknownHostException, IOException {
-    	this.pseudo = pseudo;
+    public Client(String address, Integer port) throws UnknownHostException, IOException {
+
         this.address = address;
         this.port = port;
 
