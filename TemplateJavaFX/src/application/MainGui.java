@@ -1,4 +1,5 @@
 package application;
+import gameuno.Game;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Group;
@@ -24,6 +25,8 @@ public class MainGui extends Application {
 		Scene scene = new Scene(root, 600, 500);
 		stage.setTitle("Ma super app");
 
+		Game g = new Game();
+		
 	
 		stage.setScene(scene);
 		stage.show();
