@@ -16,11 +16,13 @@ public class MainGui extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 		// TODO Auto-generated method stub
-		ClientPanel clientPanel = new ClientPanel();
-		ConnexionPanel connexionPanel = new ConnexionPanel();
+//		ClientPanel clientPanel = new ClientPanel();
 		Group root = new Group();
-//		root.getChildren().add(clientPanel);
+		ConnexionPanel connexionPanel = new ConnexionPanel(root);
 		root.getChildren().add(connexionPanel);
+//		root.getChildren().clear();
+//		root.getChildren().add(clientPanel);
+//		root.getChildren().add
 		Scene scene = new Scene(root, 600, 500);
 		stage.setTitle("Ma super app");
 
