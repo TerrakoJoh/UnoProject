@@ -80,7 +80,7 @@ public class ClientPanel extends Parent{
 			
 		});
 		
-		this.deconnexionBtn.setText("Deconnexion");
+		this.deconnexionBtn.setText("Quit");
 		this.deconnexionBtn.setLayoutX(480);
 		this.deconnexionBtn.setLayoutY(50);
 		this.deconnexionBtn.setPrefHeight(30);
