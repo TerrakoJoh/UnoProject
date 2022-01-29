@@ -4,8 +4,6 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.text.Text;
 
 
 public class MainGui extends Application {
