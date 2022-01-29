@@ -24,7 +24,6 @@ public class ConnexionPanel extends Parent {
 	private Group root;
 	
 	public ConnexionPanel(Group root) {
-		
 		this.root = root;
 		//init components
 		this.pseudo = new TextArea();
@@ -87,7 +86,7 @@ public class ConnexionPanel extends Parent {
 		//check in db
 		System.out.println(this.pseudo.getText());
 		System.out.println(this.password.getText());
-		ClientPanel clientPanel = new ClientPanel(this.pseudo.getText());
+		ClientPanel clientPanel = new ClientPanel(this.pseudo.getText(), this.root);
 		this.root.getChildren().clear();
 		this.root.getChildren().add(clientPanel);
 		if(this.pseudo.getText().compareTo("Admin") == 0 && this.password.getText().compareTo("Admin") == 0) {
