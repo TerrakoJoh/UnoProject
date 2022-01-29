@@ -103,9 +103,10 @@ public class ConnectedClient implements Runnable {
 					System.out.println("Ecoute de " + id);
 
 					Message mess = (Message) in.readObject();
+//					System.out.println("JE TESTE ENCORE !!" + mess);
 
 					if (mess != null) {
-						mess.setId(id);
+//						mess.setId(id);
 						System.out.println("Message de " + id + " : " + mess.toString());
 
 						server.broadcastMessage(mess, id);

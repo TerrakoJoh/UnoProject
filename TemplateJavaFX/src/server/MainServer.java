@@ -25,8 +25,7 @@ public class MainServer {
 
         try {
 //                Integer port = new Integer(args[0]);
-                Integer port = 1885;
-                Server server = new Server(port);
+                Server server = new Server();
 
                 Scanner sc = new Scanner(System.in);
 

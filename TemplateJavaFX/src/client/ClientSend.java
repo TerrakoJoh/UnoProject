@@ -23,13 +23,16 @@ public class ClientSend implements Runnable {
 	private ObjectOutputStream out;
 
 	private Socket socket;
+	
+	private String pseudo;
 
 	/**
 	 *
 	 * @param client the client object
 	 * @param out    the output stream
 	 */
-	public ClientSend(Socket socket, ObjectOutputStream out) {
+	public ClientSend(String pseudo, Socket socket, ObjectOutputStream out) {
+		this.pseudo = pseudo;
 		this.socket = socket;
 		this.out = out;
 	}
@@ -49,7 +52,7 @@ public class ClientSend implements Runnable {
 				System.out.println("Votre message >> ");
 				String m = sc.nextLine();
 
-				Message mess = new Message("client", m);
+				Message mess = new Message(this.pseudo, m);
 
 				out.writeObject(mess);
 				out.flush();

@@ -37,8 +37,8 @@ public class Server {
      * @param port the port the server listens to
      * @throws IOException
      */
-    public Server(int port) throws IOException {
-        this.port = port;
+    public Server() throws IOException {
+        this.port = 1885;
         this.clients = new ArrayList<ConnectedClient>();
         
         conn = new Connection(this);
@@ -56,7 +56,7 @@ public class Server {
      * @param newClient the new client
      */
     public void addClient(ConnectedClient newClient) {
-    	Message mess = new Message("server", "Le client " + newClient.getId() + " vient de se connecter");
+    	Message mess = new Message("server", "Quelqu'un vient de se connecter !");
     	broadcastMessage(mess, newClient.getId());
         this.clients.add(newClient);
     }

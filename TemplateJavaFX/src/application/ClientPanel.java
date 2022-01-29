@@ -1,5 +1,8 @@
 package application;
 
+import java.io.IOException;
+import java.net.UnknownHostException;
+
 import client.Client;
 import common.Message;
 import javafx.application.Platform;
@@ -20,9 +23,17 @@ public class ClientPanel extends Parent{
 	private Button sendBtn;
 	private Button clearBtn;
 	private Client client;
-//	private String pseudo;
 	
 	public ClientPanel(String pseudo) {
+		try {
+			client = new Client(this);
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		this.textToSend = new TextArea();
 		this.scrollReceivedText = new ScrollPane();
 		this.sendBtn = new Button();
@@ -87,6 +98,19 @@ public class ClientPanel extends Parent{
 		
 		
 	}
+	public void printReceivedMessage(Message mess) {
+		Platform.runLater(new Runnable() {
+
+			@Override
+			public void run() {
+		
+			// TODO Auto-generated method stub
+			Label text = new Label("\n" + mess.toString());
+			text.setPrefWidth(receivedText.getPrefWidth()-20);
+			text.setAlignment(Pos.CENTER_LEFT);
+			receivedText.getChildren().add(text);	
+		;}});
+	}
 	
 	public void printNewMessage(Message mess) {
 		Platform.runLater(new Runnable() {
@@ -98,6 +122,12 @@ public class ClientPanel extends Parent{
 				text.setPrefWidth(receivedText.getPrefWidth()-20);
 				text.setAlignment(Pos.CENTER_LEFT);
 				receivedText.getChildren().add(text);
+				try {
+					client.sendMessage(mess);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 			
 		});

@@ -52,8 +52,6 @@ public class ClientReceive implements Runnable {
 
         try {
             
-            
-
 
             boolean isActive = true;
             while (isActive) {

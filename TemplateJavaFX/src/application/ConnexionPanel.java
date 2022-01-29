@@ -24,6 +24,7 @@ public class ConnexionPanel extends Parent {
 	private Group root;
 	
 	public ConnexionPanel(Group root) {
+		
 		this.root = root;
 		//init components
 		this.pseudo = new TextArea();

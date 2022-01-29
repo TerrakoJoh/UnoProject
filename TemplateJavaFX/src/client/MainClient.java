@@ -18,18 +18,18 @@ public class MainClient {
      */
     public static void main(String[] args) {
 
-        try {
-//                String address = args[0];
-        	String address = "127.0.0.1";
-//                Integer port = new Integer(args[1]);
-        	Integer port = 1885;
-                Client c = new Client(address, port);
-            
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        try {
+////                String address = args[0];
+////        	String address = "127.0.0.1";
+//////                Integer port = new Integer(args[1]);
+////        	Integer port = 1885;
+////            Client c = new Client("Patate2");
+//            
+//        } catch (UnknownHostException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
     
 
