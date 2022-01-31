@@ -24,11 +24,8 @@ public class MainServer {
     public static void main(String[] args) {
 
         try {
-            if (args.length != 1) {
-                printUsage();
-            } else {
-                Integer port = new Integer(args[0]);
-                Server server = new Server(port);
+//                Integer port = new Integer(args[0]);
+                Server server = new Server();
 
                 Scanner sc = new Scanner(System.in);
 
@@ -45,7 +42,7 @@ public class MainServer {
                 	
                 }
                 
-            }
+            
         } catch (IOException e1) {
             e1.printStackTrace();
         }

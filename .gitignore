@@ -9,3 +9,4 @@ lib/javafx.controls.jar
 lib/javafx.base.jar
 lib/javafx-swt.jar
 /.metadata/
+/bin/

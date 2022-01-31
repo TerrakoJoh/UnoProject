@@ -1,16 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="TemplateJavaFX/src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.fx.ide.jdt.core.JAVAFX_CONTAINER">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
+	<classpathentry kind="src" path=""/>
 	<classpathentry kind="lib" path="D:/ECLIPSE/javaFX/openjfx-17.0.1_windows-x64_bin-sdk/javafx-sdk-17.0.1/lib/javafx.base.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
@@ -51,5 +41,5 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="output" path="TemplateJavaFX/bin"/>
+	<classpathentry kind="output" path="bin"/>
 </classpath>

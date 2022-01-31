@@ -17,6 +17,7 @@ public class Message implements Serializable{
     
     private String content;
     private String sender;
+    private String id;
     
     public Message(String sender, String content) {
         this.content = content;
@@ -28,7 +29,7 @@ public class Message implements Serializable{
     }
 
     public void setId(int id) {
-        this.sender = String.valueOf(id);
+        this.id = String.valueOf(id);
     }
     
 }

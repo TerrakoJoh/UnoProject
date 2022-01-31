@@ -1,11 +1,15 @@
 package application;
 
+import java.io.IOException;
+import java.net.UnknownHostException;
+
 import client.Client;
 import common.Message;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -19,14 +23,26 @@ public class ClientPanel extends Parent{
 	private TextFlow receivedText;
 	private Button sendBtn;
 	private Button clearBtn;
+	private Button deconnexionBtn;
 	private Client client;
-//	private String pseudo;
+	private Group root;
 	
-	public ClientPanel(String pseudo) {
+	public ClientPanel(String pseudo, Group root) {
+		try {
+			client = new Client(this);
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		this.root = root;
 		this.textToSend = new TextArea();
 		this.scrollReceivedText = new ScrollPane();
 		this.sendBtn = new Button();
 		this.clearBtn = new Button();
+		this.deconnexionBtn = new Button();
 		this.receivedText = new TextFlow();
 //		this.client = new Client(pseudo, 80, pseudo)
 		
@@ -53,17 +69,35 @@ public class ClientPanel extends Parent{
 		this.clearBtn.setPrefHeight(30);
 		this.clearBtn.setPrefWidth(60);
 		this.clearBtn.setVisible(true);
+		
 		this.clearBtn.setOnAction(new EventHandler<ActionEvent>() {
+			
 			
 			@Override
 			public void handle(ActionEvent arg0) {
 				textToSend.clear();
-				// TODO Auto-generated method stub
-				
 			}
 			
 		});
 		
+		this.deconnexionBtn.setText("Quit");
+		this.deconnexionBtn.setLayoutX(480);
+		this.deconnexionBtn.setLayoutY(50);
+		this.deconnexionBtn.setPrefHeight(30);
+//		this.deconnexionBtn.setPrefWidth(60);
+		this.deconnexionBtn.setVisible(true);
+		
+		this.deconnexionBtn.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent arg0) {
+				try {
+					client.disconnectedServer();
+					
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		});
 		this.textToSend.setLayoutX(50);
 		this.textToSend.setLayoutY(405);
 		this.textToSend.setPrefWidth(400);
@@ -84,8 +118,22 @@ public class ClientPanel extends Parent{
 		this.getChildren().add(this.scrollReceivedText);
 		this.getChildren().add(this.sendBtn);
 		this.getChildren().add(this.clearBtn);
+		this.getChildren().add(this.deconnexionBtn);
 		
 		
+	}
+	public void printReceivedMessage(Message mess) {
+		Platform.runLater(new Runnable() {
+
+			@Override
+			public void run() {
+		
+			// TODO Auto-generated method stub
+			Label text = new Label("\n" + mess.toString());
+			text.setPrefWidth(receivedText.getPrefWidth()-20);
+			text.setAlignment(Pos.CENTER_LEFT);
+			receivedText.getChildren().add(text);	
+		;}});
 	}
 	
 	public void printNewMessage(Message mess) {
@@ -98,9 +146,21 @@ public class ClientPanel extends Parent{
 				text.setPrefWidth(receivedText.getPrefWidth()-20);
 				text.setAlignment(Pos.CENTER_LEFT);
 				receivedText.getChildren().add(text);
+				try {
+					client.sendMessage(mess);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 			
 		});
 	}
 	
+	public void deconnexion() {
+		this.root.getChildren().clear();
+		ConnexionPanel connexionPanel = new ConnexionPanel(this.root);
+		this.root.getChildren().add(connexionPanel);
+			
+}
 }

@@ -10,6 +10,8 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+import application.ClientPanel;
+
 /**
  * Class implementing a simple client: - reads messages from standard input -
  * writes in standard output the received messages. Based on a TCP connexion
@@ -39,7 +41,8 @@ public class Client {
      */
     private ObjectOutputStream out;
     private ObjectInputStream in;
-    //private String pseudo;
+    private String pseudo;
+    private ClientPanel clientPanel;
 
     /**
      * opens the socket, the input and output streams, and start two threads,
@@ -51,16 +54,16 @@ public class Client {
      * @throws UnknownHostException
      * @throws IOException
      */
-    public Client(String address, Integer port) throws UnknownHostException, IOException {
-    	//this.pseudo = pseudo;
-        this.address = address;
-        this.port = port;
+    public Client( ClientPanel client) throws UnknownHostException, IOException {
+        this.address = "127.0.0.1";
+        this.port = 1885;
+        this.clientPanel = client;
 
         socket = new Socket(address, port);
 
         out = new ObjectOutputStream(socket.getOutputStream());
 
-        Thread threadSend = new Thread(new ClientSend(socket, out));
+        Thread threadSend = new Thread(new ClientSend(this.pseudo, socket, out));
         threadSend.start();
 
         Thread threadReceive = new Thread(new ClientReceive(this, socket));
@@ -77,15 +80,20 @@ public class Client {
         System.exit(0);
     }
 
-    public void sendMessage(String text) throws IOException {
-        Message mess = new Message("client", text);
+    public void sendMessage(Message mess) throws IOException {
+//    	System.out.println("ENVOI MESSAGE : " + this.pseudo + " ----- " + text );
 
         out.writeObject(mess);
         out.flush();
     }
 
     void messageReceived(Message mess) {
-        System.out.println(mess);
+    		System.out.println(mess);
+    		this.clientPanel.printReceivedMessage(mess);
+    }
+    
+    public String getPseudo() {
+    	return this.pseudo;
     }
 
 }
