@@ -9,6 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import common.Message;
+import common.Message;
 
 /**
  * Class which represents a new connected client in the server side. It contains
@@ -66,7 +67,6 @@ public class ConnectedClient implements Runnable {
 		in = new ObjectInputStream(socket.getInputStream());
 
 		System.out.println("Nouvelle connexion, id = " + id);
-
 	}
 
 	/**

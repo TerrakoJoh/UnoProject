@@ -30,6 +30,7 @@ public class Server {
     private int port;
 
     private Connection conn;
+    private DatabaseSingleton database;
     
     /**
      * Starts a thread which accepts new clients
@@ -39,15 +40,13 @@ public class Server {
      */
     public Server() throws IOException {
         this.port = 1885;
+        this.database = DatabaseSingleton.getInstance();
         this.clients = new ArrayList<ConnectedClient>();
         
         conn = new Connection(this);
 
         Thread threadConnection = new Thread(conn);
         threadConnection.start();
-        
-      
-
     }
 
     /**
@@ -56,6 +55,7 @@ public class Server {
      * @param newClient the new client
      */
     public void addClient(ConnectedClient newClient) {
+    	
     	Message mess = new Message("server", "Quelqu'un vient de se connecter !");
     	broadcastMessage(mess, newClient.getId());
         this.clients.add(newClient);
@@ -90,8 +90,6 @@ public class Server {
         
         Message mess = new Message("server", "Le client " + discClient.getId() + " nous a quitté");
         broadcastMessage(mess, discClient.getId());
-        
-
     }
 
     /**
@@ -102,7 +100,9 @@ public class Server {
     public int getPort() {
         return port;
     }
-
+	private DatabaseSingleton getDatabase() {
+		return this.database;
+	}
 	public void close() {
 		for (ConnectedClient client : this.clients) {
 			try {

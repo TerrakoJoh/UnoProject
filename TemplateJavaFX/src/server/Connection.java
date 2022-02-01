@@ -69,7 +69,6 @@ public class Connection implements Runnable {
 				}
 			} catch (IOException e) {
 				System.out.println("here");
-				// e.printStackTrace();
 				this.close();
 			}
 
@@ -85,7 +84,6 @@ public class Connection implements Runnable {
 				this.serverSocket.close();
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

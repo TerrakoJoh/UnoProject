@@ -1,6 +1,7 @@
 package client;
 
 import common.Message;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -81,7 +82,6 @@ public class Client {
     }
 
     public void sendMessage(Message mess) throws IOException {
-//    	System.out.println("ENVOI MESSAGE : " + this.pseudo + " ----- " + text );
 
         out.writeObject(mess);
         out.flush();

@@ -44,7 +44,7 @@ public class ClientPanel extends Parent{
 		this.clearBtn = new Button();
 		this.deconnexionBtn = new Button();
 		this.receivedText = new TextFlow();
-//		this.client = new Client(pseudo, 80, pseudo)
+
 		
 		this.sendBtn.setText("Send");
 		this.sendBtn.setLayoutX(455);
@@ -58,7 +58,6 @@ public class ClientPanel extends Parent{
 			public void handle(ActionEvent arg0) {
 				printNewMessage(new Message(pseudo, textToSend.getText()));
 				textToSend.clear();
-				// TODO Auto-generated method stub
 			}
 		});
 		
@@ -72,7 +71,6 @@ public class ClientPanel extends Parent{
 		
 		this.clearBtn.setOnAction(new EventHandler<ActionEvent>() {
 			
-			
 			@Override
 			public void handle(ActionEvent arg0) {
 				textToSend.clear();
@@ -84,7 +82,6 @@ public class ClientPanel extends Parent{
 		this.deconnexionBtn.setLayoutX(480);
 		this.deconnexionBtn.setLayoutY(50);
 		this.deconnexionBtn.setPrefHeight(30);
-//		this.deconnexionBtn.setPrefWidth(60);
 		this.deconnexionBtn.setVisible(true);
 		
 		this.deconnexionBtn.setOnAction(new EventHandler<ActionEvent>() {
@@ -128,7 +125,6 @@ public class ClientPanel extends Parent{
 			@Override
 			public void run() {
 		
-			// TODO Auto-generated method stub
 			Label text = new Label("\n" + mess.toString());
 			text.setPrefWidth(receivedText.getPrefWidth()-20);
 			text.setAlignment(Pos.CENTER_LEFT);
@@ -141,7 +137,6 @@ public class ClientPanel extends Parent{
 
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				Label text = new Label("\n" + mess.toString());
 				text.setPrefWidth(receivedText.getPrefWidth()-20);
 				text.setAlignment(Pos.CENTER_LEFT);
@@ -149,7 +144,6 @@ public class ClientPanel extends Parent{
 				try {
 					client.sendMessage(mess);
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
