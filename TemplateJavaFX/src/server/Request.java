@@ -1,5 +1,9 @@
 package server;
 
+import java.util.ArrayList;
+
+import common.Message;
+
 public class Request {
 	public DatabaseSingleton db = DatabaseSingleton.getInstance();
 	
@@ -11,5 +15,8 @@ public class Request {
 		return this.db.canConnect(pseudo, password);
 	}
 	
+	public ArrayList<Message> loadHisto() {
+		return this.db.loadMessages();
+	}
 
 }

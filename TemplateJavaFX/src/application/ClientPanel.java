@@ -16,6 +16,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.text.TextFlow;
+import server.Request;
 
 public class ClientPanel extends Parent{
 	private TextArea textToSend;
@@ -117,6 +118,11 @@ public class ClientPanel extends Parent{
 		this.getChildren().add(this.clearBtn);
 		this.getChildren().add(this.deconnexionBtn);
 		
+		Request req = new Request();
+		for(Message m : req.loadHisto()) {
+			loadMessages(m);
+		}
+		
 		
 	}
 	public void printReceivedMessage(Message mess) {
@@ -149,6 +155,13 @@ public class ClientPanel extends Parent{
 			}
 			
 		});
+	}
+	
+	private void loadMessages(Message mess) {
+			Label text = new Label("\n" + mess.getDate() + "\n" + mess.toString());
+			text.setPrefWidth(receivedText.getPrefWidth()-20);
+			text.setAlignment(Pos.CENTER_LEFT);
+			receivedText.getChildren().add(text);
 	}
 	
 	public void deconnexion() {

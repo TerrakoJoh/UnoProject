@@ -68,7 +68,10 @@ public class Server {
      * @param id the client's id who sent the message
      */
     public void broadcastMessage(Message mess, int id) {
-    	this.database.saveMessage(mess);
+    	System.out.println("message");
+    	if(mess.getSender() != "server") {
+        	this.database.saveMessage(mess);
+    	}
         for (ConnectedClient client : clients) {
             if (client.getId() != id) {
                 client.sendMessage(mess);
@@ -89,7 +92,7 @@ public class Server {
         clients.remove(discClient);
         discClient.closeClient();
         
-        Message mess = new Message("server", "Le client " + discClient.getId() + " nous a quitté");
+        Message mess = new Message("server", "Quelqu'un s'est déconnecté !");
         broadcastMessage(mess, discClient.getId());
     }
 

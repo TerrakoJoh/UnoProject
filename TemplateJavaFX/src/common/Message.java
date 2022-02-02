@@ -31,6 +31,12 @@ public class Message implements Serializable{
 		   this.date = dtf.format(now).toString();
     }
     
+    public Message(String sender, String content, String date) {
+    	this.content = content;
+    	this.sender = sender;
+    	this.date = date;
+    }
+    
     public String toString() {
         return sender + " : " + content;
     }

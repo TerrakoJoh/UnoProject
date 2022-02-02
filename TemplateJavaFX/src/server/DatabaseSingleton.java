@@ -7,7 +7,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
-
+import java.util.ArrayList;
 import java.util.Properties;
 
 import common.Message;
@@ -82,10 +82,14 @@ public class DatabaseSingleton {
 				Connection conn = DriverManager.getConnection(url, user, passwd);
 				Statement stmt = conn.createStatement();
 //				Statement stmt = (Statement) conn.createStatement();
-				String query = "insert into unomessage(contentmess, datesend, pseudouser) VALUES('" + m.getContent() 
+				System.out.println(m.getContent());
+				String test = m.getContent().replace("'", "''");
+						System.out.println(test);
+				String query = "insert into unomessage(contentmess, datesend, pseudouser) VALUES('" + test 
 				+ "', '" + m.getDate()
 				+ "', '" + m.getSender() 
 				+ "')";
+				System.out.println(query);
 				ResultSet rs = ((java.sql.Statement) stmt).executeQuery(query);
 				query = "commit";
 				rs = ((java.sql.Statement) stmt).executeQuery(query);
@@ -103,6 +107,40 @@ public class DatabaseSingleton {
 				e.printStackTrace();
 			}
 		   
+	}
+	
+	public ArrayList<Message> loadMessages() {
+		ArrayList<Message> histo = new ArrayList<Message>();
+		
+		 try {
+				Class.forName("oracle.jdbc.driver.OracleDriver");
+				Connection conn = DriverManager.getConnection(url, user, passwd);
+				Statement stmt = conn.createStatement();
+//				Statement stmt = (Statement) conn.createStatement();
+				String query = "select * from unomessage order by idmess"; 
+			
+				ResultSet rs = ((java.sql.Statement) stmt).executeQuery(query);
+				
+	
+
+//				
+				while(rs.next()) {
+					String sender = rs.getString("pseudoUser");
+					String content = rs.getString("contentMess");
+					String date = rs.getString("dateSend");
+					if(!sender.isEmpty() && !content.isEmpty() && !date.isEmpty()) {
+						histo.add(new Message(sender, content, date));
+					}
+					
+				}
+				stmt.close();
+//				((Connection) stmt).close();
+				
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		 
+		 return histo;
 	}
 	
 	
