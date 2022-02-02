@@ -21,11 +21,11 @@ public class Main extends Application {
 	}
 	
 	public static void main(String[] args) {
-		if("Ø" == "Ø") {
-			System.out.println("yes Ø");
-		} else {
-			System.out.println("nope" );
-		}
+		// if("ï¿½" == "ï¿½") {
+		// 	System.out.println("yes ï¿½");
+		// } else {
+		// 	System.out.println("nope" );
+		// }
 		launch(args);
 	}
 }

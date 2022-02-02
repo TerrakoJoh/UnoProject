@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+
 import java.util.Properties;
 
 import common.Message;
@@ -45,28 +46,7 @@ public class DatabaseSingleton {
 		return databaseInstance;
 	}
 	
-	public void addMessage(Message m) {
-		
-		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-			Connection conn = DriverManager.getConnection(url, user, passwd);
-			Statement stmt = conn.createStatement();
-//			Statement stmt = (Statement) conn.createStatement();
-			String query = "select pseudouser from useruno where";
-			ResultSet rs = ((java.sql.Statement) stmt).executeQuery(query);
-//			
-			while(rs.next()) {
-				int id = rs.getInt("no_adherent");
-				String name = rs.getString("nom_adherent");
-				System.out.println("Prénom " + id + " Nom " + name);
-			}
-			stmt.close();
-//			((Connection) stmt).close();
-			
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-	}
+	
 
 	
 	private boolean areIdsCorrect(String pseudo, String password) {
@@ -75,8 +55,10 @@ public class DatabaseSingleton {
 			Connection conn = DriverManager.getConnection(url, user, passwd);
 			Statement stmt = conn.createStatement();
 //			Statement stmt = (Statement) conn.createStatement();
-			String query = "SELECT pseudoUser FROM USERUNO" + " WHERE pseudoUser LIKE '" + pseudo +  "'" + " AND pwdUser LIKE '" + password + "'";
+			String query = "SELECT pseudoUser FROM UNOUSER" + " WHERE pseudoUser LIKE '" + pseudo +  "'" + " AND pwdUser LIKE '" + password + "'";
+			
 			ResultSet rs = ((java.sql.Statement) stmt).executeQuery(query);
+			
 //			
 			if(rs.next()) {
 				stmt.close();
@@ -93,6 +75,35 @@ public class DatabaseSingleton {
 		return false;
 	}
 	
+	public void saveMessage(Message m) {
+		   
+		   try {
+				Class.forName("oracle.jdbc.driver.OracleDriver");
+				Connection conn = DriverManager.getConnection(url, user, passwd);
+				Statement stmt = conn.createStatement();
+//				Statement stmt = (Statement) conn.createStatement();
+				String query = "insert into unomessage(contentmess, datesend, pseudouser) VALUES('" + m.getContent() 
+				+ "', '" + m.getDate()
+				+ "', '" + m.getSender() 
+				+ "')";
+				ResultSet rs = ((java.sql.Statement) stmt).executeQuery(query);
+				query = "commit";
+				rs = ((java.sql.Statement) stmt).executeQuery(query);
+
+//				
+//				while(rs.next()) {
+//					int id = rs.getInt("no_adherent");
+//					String name = rs.getString("nom_adherent");
+//					System.out.println("Prénom " + id + " Nom " + name);
+//				}
+				stmt.close();
+//				((Connection) stmt).close();
+				
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		   
+	}
 	
 	
 	public boolean canConnect(String pseudo, String password) {

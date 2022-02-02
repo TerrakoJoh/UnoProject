@@ -68,6 +68,7 @@ public class Server {
      * @param id the client's id who sent the message
      */
     public void broadcastMessage(Message mess, int id) {
+    	this.database.saveMessage(mess);
         for (ConnectedClient client : clients) {
             if (client.getId() != id) {
                 client.sendMessage(mess);

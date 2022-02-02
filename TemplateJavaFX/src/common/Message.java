@@ -6,6 +6,8 @@
 package common;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -17,15 +19,32 @@ public class Message implements Serializable{
     
     private String content;
     private String sender;
+    private String date;
     private String id;
     
     public Message(String sender, String content) {
         this.content = content;
         this.sender = sender;
+		  DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+		   LocalDateTime now = LocalDateTime.now();  
+		   System.out.println(dtf.format(now));
+		   this.date = dtf.format(now).toString();
     }
     
     public String toString() {
         return sender + " : " + content;
+    }
+    
+    public String getSender() {
+    	return this.sender;
+    }
+    
+    public String getContent() {
+    	return this.content;
+    }
+    
+    public String getDate() {
+    	return this.date;
     }
 
     public void setId(int id) {
