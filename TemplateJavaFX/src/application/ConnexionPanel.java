@@ -86,6 +86,14 @@ public class ConnexionPanel extends Parent {
 			
 		});
 		
+		this.buttonCreateAccount.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent arg0) {
+				createAccount();				
+			}
+		});
+		
 		//add in UI
 		this.getChildren().add(this.pseudo);
 		this.getChildren().add(this.password);
@@ -97,22 +105,44 @@ public class ConnexionPanel extends Parent {
 	}
 	
 	public void connexion() {
-		//check in db
-		System.out.println(this.pseudo.getText());
-		System.out.println(this.password.getText());
-		
+
 		Request req = new Request();
 		if(req.canConnect(this.pseudo.getText(), this.password.getText())) {
 
-			ClientPanel clientPanel = new ClientPanel(this.pseudo.getText(), this.root);
+			ClientPanel clientPanel = new ClientPanel(this.pseudo.getText());
 			this.root.getChildren().clear();
 			this.root.getChildren().add(clientPanel);
 		} else {
 			this.invalidText.setText("Pseudo ou mot de passe incorrect");
+		}
+	}
+	
+	public void createAccount() {
+		Request req = new Request();
+		if(!this.pseudo.getText().isBlank() && !this.password.getText().isBlank()) {
+		if(this.pseudo.getText().contains("'") || this.password.getText().contains("'") || this.pseudo.getText().contains(" ") || this.password.getText().contains(" ")) {
+			this.invalidText.setText("Le pseudo et le mot de passe ne peuvent pas contenir d'apostrophes ' ni d'espaces.");
+		} else {
+			if(this.password.getText().length()<8) {
+				this.invalidText.setText("Le mot de passe doit contenir au moins 8 caractères.");
+
+			} else {
+				if(req.isPseudoFree(this.pseudo.getText())) {
+					if(req.isAccountCreated(this.pseudo.getText(), this.password.getText())) {
+						this.invalidText.setText("Votre compte est créé !");
+					} else {
+						this.invalidText.setText("Erreur lors de la création de votre compte.");
+					}
+				} else {
+					this.invalidText.setText("Ce pseudo existe déjà.");
+				}
+			}
+		}
+		} else {
+			this.invalidText.setText("Le pseudo et le mot de passe ne peuvent pas être vides ou contenir seulement des espaces.");
 
 		}
-			
-
+		
 	}
 
 

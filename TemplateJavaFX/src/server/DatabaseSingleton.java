@@ -91,17 +91,13 @@ public class DatabaseSingleton {
 				+ "')";
 				System.out.println(query);
 				ResultSet rs = ((java.sql.Statement) stmt).executeQuery(query);
+				System.out.println(rs);
+
 				query = "commit";
 				rs = ((java.sql.Statement) stmt).executeQuery(query);
 
-//				
-//				while(rs.next()) {
-//					int id = rs.getInt("no_adherent");
-//					String name = rs.getString("nom_adherent");
-//					System.out.println("Prénom " + id + " Nom " + name);
-//				}
+
 				stmt.close();
-//				((Connection) stmt).close();
 				
 			} catch(Exception e) {
 				e.printStackTrace();
@@ -116,14 +112,10 @@ public class DatabaseSingleton {
 				Class.forName("oracle.jdbc.driver.OracleDriver");
 				Connection conn = DriverManager.getConnection(url, user, passwd);
 				Statement stmt = conn.createStatement();
-//				Statement stmt = (Statement) conn.createStatement();
 				String query = "select * from unomessage order by idmess"; 
 			
 				ResultSet rs = ((java.sql.Statement) stmt).executeQuery(query);
-				
-	
 
-//				
 				while(rs.next()) {
 					String sender = rs.getString("pseudoUser");
 					String content = rs.getString("contentMess");
@@ -143,6 +135,57 @@ public class DatabaseSingleton {
 		 return histo;
 	}
 	
+	public boolean isPseudoFree(String pseudo) {
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection conn = DriverManager.getConnection(url, user, passwd);
+			Statement stmt = conn.createStatement();
+
+			
+			String query = "SELECT pseudoUser FROM UNOUSER" + " WHERE pseudoUser LIKE '" + pseudo +  "'";
+			ResultSet rs = ((java.sql.Statement) stmt).executeQuery(query);
+			
+			if(rs.next()) {
+				stmt.close();
+				return false;
+			}
+			stmt.close();
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return true;
+	}
+	
+	public boolean createAccount(String pseudo, String password) {
+		  try {
+				Class.forName("oracle.jdbc.driver.OracleDriver");
+				Connection conn = DriverManager.getConnection(url, user, passwd);
+				Statement stmt = conn.createStatement();
+
+				String query = "insert into unouser(pseudoUser, pwdUser) VALUES('" + pseudo 
+				+ "', '" + password
+				+ "')";
+				
+				System.out.println(query);
+				ResultSet rs = ((java.sql.Statement) stmt).executeQuery(query);
+				query = "commit";
+				rs = ((java.sql.Statement) stmt).executeQuery(query);
+				query = "SELECT pseudoUser FROM UNOUSER" + " WHERE pseudoUser LIKE '" + pseudo +  "'";
+				rs = ((java.sql.Statement) stmt).executeQuery(query);
+				
+				if(rs.next()) {
+					stmt.close();
+
+					return true;
+				}
+				stmt.close();
+				
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+			return false;
+	}
 	
 	public boolean canConnect(String pseudo, String password) {
 		return areIdsCorrect(pseudo, password);

@@ -26,9 +26,8 @@ public class ClientPanel extends Parent{
 	private Button clearBtn;
 	private Button deconnexionBtn;
 	private Client client;
-	private Group root;
 	
-	public ClientPanel(String pseudo, Group root) {
+	public ClientPanel(String pseudo) {
 		try {
 			client = new Client(this);
 		} catch (UnknownHostException e) {
@@ -38,7 +37,6 @@ public class ClientPanel extends Parent{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		this.root = root;
 		this.textToSend = new TextArea();
 		this.scrollReceivedText = new ScrollPane();
 		this.sendBtn = new Button();
@@ -57,8 +55,10 @@ public class ClientPanel extends Parent{
 
 			@Override
 			public void handle(ActionEvent arg0) {
-				printNewMessage(new Message(pseudo, textToSend.getText()));
-				textToSend.clear();
+				if(!textToSend.getText().isBlank()) {
+					printNewMessage(new Message(pseudo, textToSend.getText()));
+					textToSend.clear();
+				}
 			}
 		});
 		
@@ -165,9 +165,7 @@ public class ClientPanel extends Parent{
 	}
 	
 	public void deconnexion() {
-		this.root.getChildren().clear();
-		ConnexionPanel connexionPanel = new ConnexionPanel(this.root);
-		this.root.getChildren().add(connexionPanel);
+
 		try {
 			this.client.disconnectedServer();
 		} catch (IOException e) {
