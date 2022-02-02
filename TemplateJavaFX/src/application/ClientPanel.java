@@ -137,7 +137,7 @@ public class ClientPanel extends Parent{
 
 			@Override
 			public void run() {
-				Label text = new Label("\n" + mess.toString());
+				Label text = new Label("\n" + mess.getDate() + "\n" + mess.toString());
 				text.setPrefWidth(receivedText.getPrefWidth()-20);
 				text.setAlignment(Pos.CENTER_LEFT);
 				receivedText.getChildren().add(text);
@@ -155,6 +155,12 @@ public class ClientPanel extends Parent{
 		this.root.getChildren().clear();
 		ConnexionPanel connexionPanel = new ConnexionPanel(this.root);
 		this.root.getChildren().add(connexionPanel);
+		try {
+			this.client.disconnectedServer();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 			
 }
 }
