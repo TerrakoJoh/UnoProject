@@ -21,11 +21,7 @@ public class Main extends Application {
 	}
 	
 	public static void main(String[] args) {
-		// if("�" == "�") {
-		// 	System.out.println("yes �");
-		// } else {
-		// 	System.out.println("nope" );
-		// }
+
 		launch(args);
 	}
 }
