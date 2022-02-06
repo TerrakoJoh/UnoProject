@@ -23,20 +23,27 @@ import server.Request;
 
 
 
+/**
+ * @author Johanne
+ * ConnexionPanel is the screen where we can
+ * connect and subscribe.
+ */
 public class ConnexionPanel extends Parent {
 	private TextArea pseudo;
 	private PasswordField password;
 	private Text pseudoText;
 	private Text passwordText;
 	private Text invalidText;
-//	private JLabel Test;
 	private Button buttonConnect;
 	private Button buttonCreateAccount;
 	private Group root;
 	
+	/**
+	 * @param root
+	 * Constructor
+	 */
 	public ConnexionPanel(Group root) {
 		this.root = root;
-		//init components
 		this.pseudo = new TextArea();
 		this.password = new PasswordField();
 		this.pseudoText = new Text();
@@ -104,6 +111,11 @@ public class ConnexionPanel extends Parent {
 		this.getChildren().add(this.invalidText);
 	}
 	
+	/**
+	 * To connect to the server.
+	 * Will receive and answer from Request and check 
+	 * if pseudo and password are corrects.
+	 */
 	public void connexion() {
 
 		Request req = new Request();
@@ -117,6 +129,13 @@ public class ConnexionPanel extends Parent {
 		}
 	}
 	
+	/**
+	 * Create account, verify if password / pseudo are blanks
+	 * Verify if contains ' or spaces
+	 * Verify if length of password >= 8
+	 * Verify if pseudo is free
+	 * 
+	 */
 	public void createAccount() {
 		Request req = new Request();
 		if(!this.pseudo.getText().isBlank() && !this.password.getText().isBlank()) {
