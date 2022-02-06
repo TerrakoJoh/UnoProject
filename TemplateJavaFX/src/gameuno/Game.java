@@ -1,23 +1,59 @@
 package gameuno;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Properties;
 import java.util.Random;
 
+import common.Message;
+import server.DatabaseSingleton;
+
+/**
+ * @author arnaud
+ * classe qui permet la gestion du jeu
+ */
 public class Game {
-	private ArrayList<Card> LstCards = new ArrayList<Card>();
-	private ArrayList<String> LstGamers = new ArrayList<String>();
-	private ArrayList<ArrayList<Card>> LstHands = new ArrayList<ArrayList<Card>>();
 	
-	public Game() {
-		loadCards();
-		LstGamers.add("Patate");
-		LstGamers.add("Rémi");
-		LstGamers.add("Melvyn");
-		LstGamers.add("Alexandre");
-		loadHand();
+	static Game databaseInstance;
+	static ArrayList<Card> LstCards = new ArrayList<Card>();
+	//private ArrayList<String> LstGamers = new ArrayList<String>();
+	public static ArrayList<Integer> LstGamers = new ArrayList<Integer>();
+	public static ArrayList<ArrayList<Card>> LstHands = new ArrayList<ArrayList<Card>>();
+	static ArrayList<Card> DrawCard = new ArrayList<Card>();
+	public static Card ReturnedCard = new Card();
+	public static ArrayList<String> LstAccesHand = new ArrayList<String>();
+	
+	
+	
+	public static Game getInstance() {
+		if(databaseInstance == null) {
+			databaseInstance = new Game();
+		}
+		return databaseInstance;
 	}
 	
-	public void loadCards() { // chargement du jeu de cartes : total de 108 cartes
+	
+	/**
+	 * fonction qui lance la partie
+	 *  elle charge le jeu et les mains
+	 */
+	public static void startGame() {
+		Game.loadCards();
+		Game.loadHand();
+		// charge la première carte
+		Random rand1 = new Random();
+		int randCard1 = rand1.nextInt(DrawCard.size());
+		ReturnedCard = DrawCard.get(randCard1);
+		DrawCard.remove(randCard1);
+	}
+	
+	
+	/**
+	 * fonction qui charge le jeu de cartes
+	 */
+	public static void loadCards() {
 		EnumColor colors[] = EnumColor.values();
 		EnumSymbol symbols[] = EnumSymbol.values();
 		for(EnumColor color : colors) {
@@ -45,16 +81,15 @@ public class Game {
 				}
 			}
 		}
-//		for(Card card : LstCards) {
-//			System.out.println(card.PrintCard());
-//		}
 	}
 	
-	public void loadHand() { // distribution des mains, composé de 7 cartes pour chaque joueur
-		ArrayList<Card> DrawCard = new ArrayList<Card>();
+	
+	/**
+	 * fonction qui charge les mains pour chaque joueur
+	 */
+	public static void loadHand() {
 		DrawCard = LstCards;
-		
-		for(String gamer : LstGamers) {
+		for(int gamer : LstGamers) {
 			ArrayList<Card> Hand = new ArrayList<Card>();
 			
 			for(int i = 0; i < 7; i++) {
@@ -68,15 +103,13 @@ public class Game {
 				DrawCard.remove(randCard);
 			}
 			LstHands.add(DrawCard);
-			
-//			System.out.println(gamer);
-//			for(Card c : Hand) {
-//				System.out.println(c.PrintCard());
-//			}
 		}
-//		System.out.println("Pioche");
-//		for(Card c : DrawCard) {
-//			System.out.println(c.PrintCard());
-//		}
+	}	
+	
+	public static int FindPseudo() {
+		for(int i = 0; i < LstAccesHand.size(); i++) {
+			return i;
+		}
+		return 0;
 	}
 }

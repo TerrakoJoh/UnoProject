@@ -21,8 +21,6 @@ public class MainGui extends Application {
 
 		Scene scene = new Scene(root, 600, 500);
 		stage.setTitle("UnoProject");
-
-		Game g = new Game();
 		
 	
 		stage.setScene(scene);

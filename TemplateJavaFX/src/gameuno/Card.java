@@ -17,4 +17,12 @@ public class Card {
 		return color.name() + " " + symbol.name();
 		//System.out.println(color.name() + " " + symbol.name());
 	}
+	
+	public String GetColor() {
+		return color.name();
+	}
+	
+	public String GetSymbol() {
+		return symbol.name();
+	}
 }
