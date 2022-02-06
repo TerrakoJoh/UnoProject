@@ -6,6 +6,10 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 
 
+/**
+ * @author Johanne
+ * Load ClientPanel
+ */
 public class MainGui extends Application {
 
 	public static void main(String[] args) {
