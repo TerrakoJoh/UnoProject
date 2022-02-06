@@ -15,7 +15,6 @@ import java.time.format.DateTimeFormatter;
  */
 public class Message implements Serializable{
     
-    //public static final long serialVersionUID = 1L;
     
     private String content;
     private String sender;
@@ -27,7 +26,6 @@ public class Message implements Serializable{
         this.sender = sender;
 		  DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
 		   LocalDateTime now = LocalDateTime.now();  
-		   System.out.println(dtf.format(now));
 		   this.date = dtf.format(now).toString();
     }
     
