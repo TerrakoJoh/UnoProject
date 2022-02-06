@@ -11,6 +11,9 @@ import common.Message;
  *
  */
 public class Request {
+	/**
+	 * SingletonDB
+	 */
 	public DatabaseSingleton db = DatabaseSingleton.getInstance();
 	
 	/**
