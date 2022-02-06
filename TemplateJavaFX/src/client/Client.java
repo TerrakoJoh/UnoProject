@@ -20,6 +20,10 @@ import application.ClientPanel;
  * @author Remi Watrigant
  *
  */
+/**
+ * @author Johanne
+ *
+ */
 public class Client {
 
     /*
@@ -42,6 +46,9 @@ public class Client {
      */
     private ObjectOutputStream out;
     private ObjectInputStream in;
+    /**
+     * Pseudo and ClientPanel to print receivedMessages
+     */
     private String pseudo;
     private ClientPanel clientPanel;
 
