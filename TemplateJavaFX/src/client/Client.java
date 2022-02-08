@@ -20,10 +20,7 @@ import application.ClientPanel;
  * @author Remi Watrigant
  *
  */
-/**
- * @author Johanne
- *
- */
+
 public class Client {
 
     /*

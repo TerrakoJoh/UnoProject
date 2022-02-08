@@ -19,7 +19,6 @@ public class Message implements Serializable{
     private String content;
     private String sender;
     private String date;
-    private String id;
     
     public Message(String sender, String content) {
         this.content = content;
@@ -49,10 +48,6 @@ public class Message implements Serializable{
     
     public String getDate() {
     	return this.date;
-    }
-
-    public void setId(int id) {
-        this.id = String.valueOf(id);
     }
     
 }

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import client.Client;
 import common.Message;
 import gameuno.Card;
-import gameuno.Game;
+import gameuno.GameSingleton;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -35,6 +35,7 @@ public class ClientPanel extends Parent{
 	private Label lastCard;
 	private Button loadHands; 
 	//private Card cardSelected = new Card();
+	
 	
 	public ClientPanel(String pseudo) {
 		try {
@@ -118,14 +119,26 @@ public class ClientPanel extends Parent{
 
 			@Override
 			public void handle(ActionEvent arg0) {
+				GameSingleton g = GameSingleton.getInstance();
 				handCmbBox.setVisible(true);
 				//loadHands.setVisible(true);
 				validateBtn.setVisible(true);
 				lastCard.setVisible(true);
-				int pos = Game.FindPseudo();
-				for(Card card : Game.LstHands.get(pos)) {
-					handCmbBox.getItems().addAll(card.toString());
+//				System.out.println
+				int nb = GameSingleton.LstHands.size();
+				System.out.println("patate : " + nb);
+				
+				int pos = g.FindPseudo(pseudo);
+				if(pos != -1) {
+					for(Card card : g.LstHands.get(pos)) {
+						System.out.println(card.toString());
+						handCmbBox.getItems().addAll(card.toString());
+					}
+				}else {
+					System.out.println("Erreur : findPseudo");
 				}
+					
+				
 			}
 		});
 		
@@ -146,12 +159,12 @@ public class ClientPanel extends Parent{
 			@Override
 			public void handle(ActionEvent arg0) {
 				// renvoie vers la fct qui vérifie la carte
-				Game.getInstance();
+				
 				Card theCard = new Card();
 				//theCard = handCmbBox.getSelectionModel();
-				if(theCard.GetColor() == Game.ReturnedCard.GetColor() || theCard.GetSymbol() == Game.ReturnedCard.GetSymbol()) {
-					Game.ReturnedCard = theCard;
-					lastCard.setText(Game.ReturnedCard.toString());
+				if(theCard.GetColor() == GameSingleton.ReturnedCard.GetColor() || theCard.GetSymbol() == GameSingleton.ReturnedCard.GetSymbol()) {
+					GameSingleton.ReturnedCard = theCard;
+					lastCard.setText(GameSingleton.ReturnedCard.toString());
 				}else {
 					printNewMessage(new Message("Server", "Vous ne pouvez pas jouer cette carte"));
 				}

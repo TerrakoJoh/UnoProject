@@ -14,22 +14,22 @@ import server.DatabaseSingleton;
  * @author arnaud
  * classe qui permet la gestion du jeu
  */
-public class Game {
+public class GameSingleton {
 	
-	static Game databaseInstance;
+	static GameSingleton databaseInstance;
 	static ArrayList<Card> LstCards = new ArrayList<Card>();
-	//private ArrayList<String> LstGamers = new ArrayList<String>();
 	public static ArrayList<Integer> LstGamers = new ArrayList<Integer>();
 	public static ArrayList<ArrayList<Card>> LstHands = new ArrayList<ArrayList<Card>>();
 	static ArrayList<Card> DrawCard = new ArrayList<Card>();
 	public static Card ReturnedCard = new Card();
-	public static ArrayList<String> LstAccesHand = new ArrayList<String>();
+	public ArrayList<String> LstAccesHand = new ArrayList<String>();
 	
 	
 	
-	public static Game getInstance() {
+	public static GameSingleton getInstance() {
 		if(databaseInstance == null) {
-			databaseInstance = new Game();
+			databaseInstance = new GameSingleton();
+			
 		}
 		return databaseInstance;
 	}
@@ -40,8 +40,8 @@ public class Game {
 	 *  elle charge le jeu et les mains
 	 */
 	public static void startGame() {
-		Game.loadCards();
-		Game.loadHand();
+		GameSingleton.loadCards();
+		GameSingleton.loadHand();
 		// charge la première carte
 		Random rand1 = new Random();
 		int randCard1 = rand1.nextInt(DrawCard.size());
@@ -89,7 +89,9 @@ public class Game {
 	 */
 	public static void loadHand() {
 		DrawCard = LstCards;
+		int count = 0;
 		for(int gamer : LstGamers) {
+			count++;
 			ArrayList<Card> Hand = new ArrayList<Card>();
 			
 			for(int i = 0; i < 7; i++) {
@@ -98,18 +100,25 @@ public class Game {
 				int randCard = rand.nextInt(DrawCard.size());
 				Card card = DrawCard.get(randCard);
 				Hand.add(card);
-//				card.PrintCard();
-//				DrawCard.get(randCard).PrintCard();
 				DrawCard.remove(randCard);
 			}
 			LstHands.add(DrawCard);
 		}
+		System.out.println("COUNT : " + count);
+		
 	}	
 	
-	public static int FindPseudo() {
-		for(int i = 0; i < LstAccesHand.size(); i++) {
-			return i;
+	public int FindPseudo(String pseudo) {
+		int nb = LstAccesHand.size();
+		System.out.println("nb : " + nb);
+;		for(int i = 0; i < nb; i++) {
+			System.out.println("patate");
+			if(pseudo == LstAccesHand.get(i)) {
+				return i;
+			}
+			System.out.println(LstAccesHand.get(i));
+//			return i;
 		}
-		return 0;
+		return -1;
 	}
 }

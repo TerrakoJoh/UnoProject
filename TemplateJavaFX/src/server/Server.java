@@ -1,7 +1,7 @@
 package server;
 
 import common.Message;
-import gameuno.Game;
+import gameuno.GameSingleton;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -91,46 +91,51 @@ public class Server {
      * @param id
      */
     public void Order(Message mess, int id) {
+    	GameSingleton g = GameSingleton.getInstance();
 		switch(mess.getContent()) {
 		  case "!play":
+			  System.out.println("play");
 			  //Game game = new Game();
 		    //game.joinGame(mess.getSender(), id);
-			Game.getInstance();
+			  GameSingleton.LstGamers.add(id);
+			g.LstAccesHand.add(mess.getSender());
+			System.out.println("ger sender" + mess.getSender());
+			//System.out.println(Game.LstAccesHand);
+			int nb = g.LstAccesHand.size();
+			for (int i = 0; i < nb; i++) {
+				System.out.println("abc" + g.LstAccesHand.get(i));
+			}
 			Message messCreate = new Message("Server", "une partie à été créée !");
 			for (ConnectedClient client : clients) {
                 client.sendMessage(messCreate);
             }
-			Game.LstGamers.add(id);
-			Game.LstAccesHand.add(mess.getSender());
+			
 		    break;
 		    
 		  case "!join":
-			  if(Game.LstGamers.size() == 1) {
+			  System.out.println("join");
+			  if(GameSingleton.LstGamers.size() == 1) {
 				  Message messPlayCompl = new Message("Server", "La partie est complète");
 				  for (ConnectedClient client : clients) {
 					  client.sendMessage(messPlayCompl);
 				  }
 			  } else {
-					Game.LstGamers.add(id);
-					Game.LstAccesHand.add(mess.getSender());
+				  	GameSingleton.LstGamers.add(id);
+					g.LstAccesHand.add(mess.getSender());
 					Message messNoJoin = new Message("Server", mess.getSender() + " à rejoin la partie");
 					for (ConnectedClient client : clients) {
 			            client.sendMessage(messNoJoin);
 			        }
-					if(Game.LstGamers.size() == 1) {
+					if(GameSingleton.LstGamers.size() == 1) {
 						Message messCompl = new Message("Server", "La partie est complète");
 						for (ConnectedClient client : clients) {
 					         client.sendMessage(messCompl);
 					    }
-						Game.startGame();
+						GameSingleton.startGame();
 						
 					}
 			 }
 		    break;
-		    
-		  case "!leave" :
-			  //pff ?
-			  break;
 			  
 		  default:
 			  Message messError = new Message("Server", "Ceci n'est pas une commande");
